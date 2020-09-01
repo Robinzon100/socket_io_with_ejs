@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>roomss</h1>
+    <button onclick="messageSend('<%= roomName %>')">asd</button>
+    <%= roomName %>
+</body>
+
+<script src="/socket.io.js"></script>
+
+<script>
+    let socket = io('http://localhost:3000')
+
+    socket.emit('join_room', "<%= roomName %>")
+ 
+    const messageSend = (routeParam) => {
+        if (routeParam == 'chucha_sastav') {
+            socket.emit('message', "data mata")
+        }
+    }
+
+    
+    socket.on('send_from_server_msg', (data) => {
+        console.log("data: " + data)
+    })
+
+
+</script>
+
+</html>
